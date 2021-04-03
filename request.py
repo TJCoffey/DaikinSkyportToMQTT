@@ -8,9 +8,6 @@ import crython
 
 from daikinskyport import DaikinSkyport
 
-with open('mapping.json') as f:
-  mapping = json.load(f)
-
 with open('config.json') as f:
     creds = json.load(f)
 skyport = DaikinSkyport(None, creds['email'], creds['password'])
@@ -23,10 +20,11 @@ def doUpdate():
         thermoData = skyport.get_thermostat_info(thermostat['id'])
         #print(thermoData)
 
-        for mapKey in mapping.keys():
-            if mapKey in thermoData:
-                #print(mapKey + " : " + mapping[mapKey] + " : " + str(thermoData[mapKey]))
-                publish.single(mapping[mapKey], thermoData[mapKey], hostname=creds['mqttIP'])
+        #Just dump everything into the database
+        for param in thermoData:
+            #print(mapKey + " : " + mapping[mapKey] + " : " + str(thermoData[mapKey]))
+            print("/home/testDump/" + param + " : " thermoData[param])
+            publish.single("/home/testDump/" + param, thermoData[param], hostname=creds['mqttIP'])
         
 
 if __name__ == '__main__':

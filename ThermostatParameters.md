@@ -1,120 +1,131 @@
 A full dump of the parameters that I get back from my One+ thermostat. For reference, I have a Daikin unitary system with a DC97MC0603BN gas furnace and a DZ17VSA241 heat pump. The thermostat still appears to send the S21 and P1P2 parameters even when configured in Unitary mode. I've annotated parameters that I've learned things about (units, etc).
 
 
-# Useful Things
+# Most Useful Things
 Parameter|Description|Units
 ---|---|---
-cspActive|Currently active cooling set point|Degrees C
+tempIndoor|Indoor temp|Degrees C
+tempOutdoor|Outdoor temp (updates ~once/hour, probably from a web service, not a sensor)|Degrees C
+hspActive|Current heating set point|Degrees C
+hspAway|Heating set point for away mode|Degrees C
+hspHome|Heating set point for home mode|Degrees C
+hspSched|Heating set point from the schedule|Degrees C
+cspActive|Current cooling set point|Degrees C
 cspAway|Cooling set point for away mode|Degrees C
 cspHome|Cooling set point for home mode|Degrees C
 cspSched|Cooling set point from the schedule|Degrees C
 dehumEnable|Dehumidifier enable
-dehumSP|Dehumidifier set point
+dehumSP|Dehumidifier set point|Percent?
 
 # Furnace
-```
-ctIFC24ACExists
-ctIFCAUXAlarm
-ctIFCBlowerMotorSizeHP
+Parameter|Description|Units
+---|---|---
+ctIFCOperatingHeatCoolMode
 ctIFCBoardAirTemperature
-ctIFCControlSoftwareVersion
+ctIFCSupplyAirTemperature
+ctIFCReturnAirTemperature
+ctIFCCoolRequestedDemandPercent
+ctIFCHeatRequestedDemandPercent
+ctIFCFanRequestedDemandPercent
+ctIFCHumRequestedDemandPercent
+ctIFCDehumRequestedDemandPercent
+ctIFCHumidityFanSpeed
+ctIFCHumiditySetting
+ctIFCIndoorBlowerAirflow
+ctIFCCurrentCoolActualStatus
+ctIFCCurrentFanActualStatus
+ctIFCCurrentHeatActualStatus
+ctIFCFlameStatus
+ctIFCAUXAlarm
+ctIFCCriticalFault
+ctIFCMinorFault
 ctIFCCoolAirflowProfileNonCT
 ctIFCCoolAirflowTrimNonCT
 ctIFCCoolCFMNonCT
 ctIFCCoolOffDelayNonCT
 ctIFCCoolOnDelayNonCT
-ctIFCCoolRequestedDemandPercent
-ctIFCCriticalFault
-ctIFCCurrentCoolActualStatus
-ctIFCCurrentFanActualStatus
-ctIFCCurrentHeatActualStatus
-ctIFCDehumRequestedDemandPercent
-ctIFCFanRequestedDemandPercent
-ctIFCFlameStatus
-ctIFCFurnaceSize
 ctIFCGasHeatOffDelay
 ctIFCGasHeatOnDelay
 ctIFCGasHeatTrimFactorPercent
 ctIFCHeatAirflowProfile
-ctIFCHeatRequestedDemandPercent
-ctIFCHumidityFanSpeed
-ctIFCHumiditySetting
-ctIFCHumRequestedDemandPercent
-ctIFCIndoorBlowerAirflow
-ctIFCMinorFault
+ctIFCUnitType
+ctIFC24ACExists|24V (non-communicating) A/C
+ctIFCBlowerMotorSizeHP
+ctIFCControlSoftwareVersion
+ctIFCFurnaceSize
 ctIFCModelNoCharacter1_15
 ctIFCNoofGasHeatStages
-ctIFCOperatingHeatCoolMode
-ctIFCReturnAirTemperature
 ctIFCSerialNoCharacter1_15
-ctIFCSupplyAirTemperature
-ctIFCUnitType
-```
+
+
 # Heat Pump (Outdoor Unit)
-```
-ctOutdoorAirTemperature - Degrees Farenheit * 10
-ctOutdoorSuctionTemperature - Degrees Farenheit * 10
-ctOutdoorCoilTemperature - Degrees Farenheit * 10
-ctOutdoorDefrostSensorTemperature - Degrees Farenheit * 10
-ctOutdoorDischargeTemperature - Degrees Farenheit * 10
-ctOutdoorFanRPM - RPM
-ctOutdoorRequestedIndoorAirflow - CFM
+Parameter|Description|Units
+---|---|---
+ctOutdoorMode
+ctOutdoorAirTemperature|Outdoor temp|Degrees Farenheit * 10
+ctOutdoorSuctionTemperature|Suction temp (heat pump inlet?)|Degrees Farenheit * 10
+ctOutdoorCoilTemperature|Heat pump coil temp|Degrees Farenheit * 10
+ctOutdoorDefrostSensorTemperature|Heat pump defrost sensor temp|Degrees Farenheit * 10
+ctOutdoorDischargeTemperature|Heat pump discharge temp|Degrees Farenheit * 10
+ctOutdoorLiquidTemperature|Heat pump liquid temp|Degrees Farenheit * 10
+ctOutdoorFanRPM|Heat pump fan speed|RPM
+ctOutdoorRequestedIndoorAirflow||CFM
+ctOutdoorCoolRequestedDemand
+ctOutdoorHeatRequestedDemand
+ctOutdoorFanRequestedDemandPercentage
+ctOutdoorSuctionPressure
+ctOutdoorCriticalFault
+ctOutdoorMinorFault
+ctOutdoorCompressorRunTime
 ctOutdoorBoostModeEnable
 ctOutdoorBoostTemperature
 ctOutdoorCapacityPriority
 ctOutdoorChargeMode
 ctOutdoorCompressorDelay
 ctOutdoorCompressorReductionMode
-ctOutdoorCompressorRunTime
-ctOutdoorControlSoftwareVersion
 ctOutdoorCoolAirflowProfiles
 ctOutdoorCoolBlowerOffDelay
 ctOutdoorCoolBlowerOnDelay
 ctOutdoorCoolMaxRPS
 ctOutdoorCoolMaxRPSOffset
-ctOutdoorCoolRequestedDemand
 ctOutdoorCoolTrimFactorHigh
 ctOutdoorCoolTrimFactorInt
 ctOutdoorCoolTrimFactorLow
-ctOutdoorCriticalFault
-ctOutdoorCtumVersion
 ctOutdoorDefrostHeat
 ctOutdoorDefrostInterval
 ctOutdoorDehumidificationCapable
 ctOutdoorDehumidificationEnable
 ctOutdoorDeHumidificationRequestedDemand
-ctOutdoorFanRequestedDemandPercentage
 ctOutdoorForceDefrost
 ctOutdoorHeatMaxRPS
 ctOutdoorHeatMaxRPSOffset
-ctOutdoorHeatRequestedDemand
 ctOutdoorHPBlowerOffDelay
 ctOutdoorHPBlowerOnDelay
 ctOutdoorHPTrimFactorHigh
 ctOutdoorHPTrimFactorInt
 ctOutdoorHPTrimFactorLow
-ctOutdoorInverterSoftwareVersion
-ctOutdoorLiquidTemperature
-ctOutdoorMinorFault
-ctOutdoorMode
-ctOutdoorModelNoCharacter1_15
 ctOutdoorNoiseDownLevel
-ctOutdoorNoofCoolStages
-ctOutdoorNoofHeatStages
 ctOutdoorPumpDown
 ctOutdoorQuietModeEnabled
-ctOutdoorSerialNoCharacter1_15
 ctOutdoorSetMaxCurrent
-ctOutdoorSizeofHouse
-ctOutdoorSuctionPressure
+ctOutdoorSizeofHouse||sqft
 ctOutdoorSystemVerificationTest
-ctOutdoorTonnage
-ctOutdoorUnitType
 ctOutdoorVerticalRise
-```
+ctOutdoorControlSoftwareVersion
+ctOutdoorTonnage
+ctOutdoorNoofCoolStages
+ctOutdoorNoofHeatStages
+ctOutdoorUnitType
+ctOutdoorModelNoCharacter1_15
+ctOutdoorSerialNoCharacter1_15
+ctOutdoorCtumVersion
+ctOutdoorInverterSoftwareVersion
+
+
 # Schedule
 For notes on time format, see https://github.com/apetrycki/daikinskyport/blob/master/API_info.md
-```
+Parameter|Description|Units
+---|---|---
 schedEnabled
 schedOverride
 schedOverrideDuration
@@ -371,10 +382,11 @@ schedWedPart6Enabled
 schedWedPart6hsp
 schedWedPart6Label
 schedWedPart6Time
-```
+
 # Indoor Air Quality Sensor
 I don't have one of these in my system, so I haven't investigated these at all
-```
+Parameter|Description|Units
+---|---|---
 ctIAQsensorExists
 aqIndoorAvailable
 aqIndoorLevel
@@ -507,18 +519,20 @@ aqIndoorVOCValueHour8Avg
 aqIndoorVOCValueHour8Max
 aqIndoorVOCValueHour9Avg
 aqIndoorVOCValueHour9Max
-```
+
 # Outdoor Air Quality
 The values here are what shows up on the One+ Air Quality screen, but change very slowly (~once/hour). I suspect the thermostat gets them (and outdoor air temp) from a web service, not a sensor
-```
+Parameter|Description|Units
+---|---|---
 aqOutdoorAvailable
 aqOutdoorLevel
 aqOutdoorOzone
 aqOutdoorParticles
 aqOutdoorValue
-```
+
 # Utility Demand Response
-```
+Parameter|Description|Units
+---|---|---
 adrAction
 adrActualStart
 adrActualStop
@@ -535,9 +549,10 @@ adrState
 adrStaticCool
 adrStaticHeat
 adrStatus
-```
+
 # Alerts/Service Reminders
-```
+Parameter|Description|Units
+---|---|---
 alertCustom1Active
 alertCustom1Date
 alertCustom1Description
@@ -611,9 +626,10 @@ alertVentilationActive
 alertVentilationDate
 alertVentilationDays
 alertVentilationDaysLimit
-```
+
 # Faults and Messages
-```
+Parameter|Description|Units
+---|---|---
 messageHistory10Date
 messageHistory10Text
 messageHistory10Type
@@ -784,9 +800,10 @@ sysFault8Code
 sysFault8Date
 sysFault9Code
 sysFault9Date
-```
+
 # EEV Coil
-```
+Parameter|Description|Units
+---|---|---
 ctEEVCoilCriticalFault
 ctEEVCoilLiquidTemperature
 ctEEVCoilMinorFault
@@ -794,9 +811,10 @@ ctEEVCoilPressureSensor
 ctEEVCoilSubCoolValue
 ctEEVCoilSuctionTemperature
 ctEEVCoilSuperHeatValue
-```
+
 # AH = Air Handler?
-```
+Parameter|Description|Units
+---|---|---
 ctAHAccessorySetting
 ctAHAUXAlarm
 ctAHControlSoftwareVersion
@@ -831,9 +849,10 @@ ctAHSubCoolValue
 ctAHSuctionTemperature
 ctAHSuperHeatValue
 ctAHUnitType
-```
+
 # Unsorted
-```
+Parameter|Description|Units
+---|---|---
 AuxDehumidifierStatus
 AuxHeaterConnection
 AuxHeaterControl
@@ -926,7 +945,6 @@ dealerMessage
 dealerName
 dealerPhone
 dealerWebsite
-
 deviceName
 deviceNameCustom
 displayBrightness
@@ -949,10 +967,6 @@ geofencingAway
 geofencingEnabled
 heatPumpLockoutEnable
 heatPumpLockoutTemp
-hspActive
-hspAway
-hspHome
-hspSched
 humDeadband
 humDeltaMin
 humEnable
@@ -1073,9 +1087,7 @@ statModel
 statType
 systemTime24
 tempDeltaMin
-tempIndoor
 tempOffset
-tempOutdoor
 tempSPMax
 tempSPMin
 timeZone
@@ -1110,10 +1122,11 @@ weatherTodayCond
 weatherTodayHum
 weatherTodayIcon
 weatherTodayTempC
-```
+
 # P1P2 Bus Parameters
 For VRV.SkyAir.single/multi-split (P1/P2) equipment
-```
+Parameter|Description|Units
+---|---|---
 P1P2AirnetAddressChangeRequestEnable
 P1P2AirnetAddressIndoorUnitReceived
 P1P2AirnetAddressIndoorUnitSent
@@ -2039,10 +2052,11 @@ P1P2TestOperationEnable
 P1P2ThermOnOffInformation
 P1P2UIinputProhibitFlag
 P1P2UnitType
-```
+
 # S21 Bus Parameters
 For single/multi-split (S21) equipment
-```
+Parameter|Description|Units
+---|---|---
 S21ComfortModeEnable
 S21ComfortModeExists
 S21DemandLevelSetting
@@ -2074,4 +2088,3 @@ S21PowerConsumptionValid
 S21SerialComVersion
 S21SyncWithIndoorTemp
 S21ThermOnOff
-```

@@ -1,0 +1,5 @@
+{
+  "email": <DAIKIN SKYPORT USERNAME>,
+  "password": <DAIKIN SKYPORT PASSWORD>,
+  "mqttIP": <IP FOR MQTT BROKER>
+}

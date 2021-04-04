@@ -17,23 +17,28 @@ cspSched|Cooling set point from the schedule|Degrees C
 dehumEnable|Dehumidifier enable
 dehumSP|Dehumidifier set point|Percent?
 
+# System Info
+Parameter|Description|Units
+---|---|---
+NumElectronicfilters
+NumHEPAfilters
+NumMediafilters|Normal filters? Mine reads 1, with 0 for the others
+NumUVBulbs
+
 # Furnace
 Parameter|Description|Units
 ---|---|---
 ctIFCOperatingHeatCoolMode
-ctIFCBoardAirTemperature
-ctIFCSupplyAirTemperature
-ctIFCReturnAirTemperature
-ctIFCCoolRequestedDemandPercent
-ctIFCHeatRequestedDemandPercent
-ctIFCFanRequestedDemandPercent
-ctIFCHumRequestedDemandPercent
-ctIFCDehumRequestedDemandPercent
+ctIFCCoolRequestedDemandPercent||%
+ctIFCHeatRequestedDemandPercent||%
+ctIFCFanRequestedDemandPercent|Fan demand|%
+ctIFCHumRequestedDemandPercent||%
+ctIFCDehumRequestedDemandPercent||%
 ctIFCHumidityFanSpeed
 ctIFCHumiditySetting
-ctIFCIndoorBlowerAirflow
+ctIFCIndoorBlowerAirflow|Current Airflow|CFM
 ctIFCCurrentCoolActualStatus
-ctIFCCurrentFanActualStatus
+ctIFCCurrentFanActualStatus|Fan speed|%
 ctIFCCurrentHeatActualStatus
 ctIFCFlameStatus
 ctIFCAUXAlarm
@@ -48,14 +53,17 @@ ctIFCGasHeatOffDelay
 ctIFCGasHeatOnDelay
 ctIFCGasHeatTrimFactorPercent
 ctIFCHeatAirflowProfile
-ctIFCUnitType
-ctIFC24ACExists|24V (non-communicating) A/C
-ctIFCBlowerMotorSizeHP
+ctIFCUnitType|Mine is 3|
+ctIFC24ACExists|24V (non-communicating) A/C connection
+ctIFCBlowerMotorSizeHP|Blower Motor|HP
 ctIFCControlSoftwareVersion
-ctIFCFurnaceSize
-ctIFCModelNoCharacter1_15
+ctIFCFurnaceSize|High-fire input|Thousand btu/h
 ctIFCNoofGasHeatStages
 ctIFCSerialNoCharacter1_15
+ctIFCModelNoCharacter1_15
+ctIFCBoardAirTemperature|Not active (32767) on my system
+ctIFCSupplyAirTemperature|Not active (32767) on my system
+ctIFCReturnAirTemperature|Not active (32767) on my system
 
 
 # Heat Pump (Outdoor Unit)
@@ -72,11 +80,11 @@ ctOutdoorFanRPM|Heat pump fan speed|RPM
 ctOutdoorRequestedIndoorAirflow||CFM
 ctOutdoorCoolRequestedDemand
 ctOutdoorHeatRequestedDemand
-ctOutdoorFanRequestedDemandPercentage
+ctOutdoorFanRequestedDemandPercentage|Doesn't respond to circulate fan|%
 ctOutdoorSuctionPressure
 ctOutdoorCriticalFault
 ctOutdoorMinorFault
-ctOutdoorCompressorRunTime
+ctOutdoorCompressorRunTime||May be hours?
 ctOutdoorBoostModeEnable
 ctOutdoorBoostTemperature
 ctOutdoorCapacityPriority
@@ -990,10 +998,7 @@ nightModeEnabled
 nightModeLightBarAllowed
 nightModeStart
 nightModeStop
-NumElectronicfilters
-NumHEPAfilters
-NumMediafilters
-NumUVBulbs
+
 oneCleanAction
 oneCleanAQITrigger
 oneCleanFanActive

@@ -1,5 +1,6 @@
-#Config file with Skyport username and password
+#Config file with Skyport username, password, and tokens
 config.json
+daikinskyport.conf
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

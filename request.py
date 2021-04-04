@@ -12,19 +12,18 @@ with open('config.json') as f:
     creds = json.load(f)
 skyport = DaikinSkyport(None, creds['email'], creds['password'])
 
-@crython.job(second=range(0, 60, 30))
+@crython.job(second=0)
 def doUpdate():
     skyport.update()
     #print(skyport.thermostatlist)
     for thermostat in skyport.thermostatlist: #should just be the one
         thermoData = skyport.get_thermostat_info(thermostat['id'])
-        #print(thermoData)
 
-        #Just dump everything into the database
-        for param in thermoData:
-            #print(mapKey + " : " + mapping[mapKey] + " : " + str(thermoData[mapKey]))
-            print("/home/testDump/" + param + " : " thermoData[param])
-            publish.single("/home/testDump/" + param, thermoData[param], hostname=creds['mqttIP'])
+        #Just dump everything into the database except all the P1P2 and S21 that are empty on my system
+        for key in thermoData:
+            if key[:4] != "P1P2" and key[:3] != "S21" and key[:8] != "aqIndoor":
+                #print(key + " : " + str(thermoData[key]))
+                publish.single("home/testDump/" + key, thermoData[key], hostname=creds['mqttIP'])
         
 
 if __name__ == '__main__':
